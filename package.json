@@ -1,0 +1,19 @@
+{
+  "name": "relese",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hewa1303/ReleaseCreation.git"
+  },
+  "author": "ich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hewa1303/ReleaseCreation/issues"
+  },
+  "homepage": "https://github.com/hewa1303/ReleaseCreation#readme"
+}
