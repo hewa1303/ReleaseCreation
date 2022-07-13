@@ -1,26 +1,20 @@
-name: Releases
+# Name of the workflow
+name: Create Release
+#Run on every commit tag with "v" (e.g. "v1.12.0")
 on:
   push:
+    # Sequence of patterns matched against refs/tags
     branches:
       - main
-
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+#Automatically create a GitHub release, with release details 
 jobs:
-  changelog:
-    runs-on: ubuntu-latest
-
+  build:
+    name: Create Release
+    runs-on: [ play-0 ]
     steps:
-      - name: conventional Changelog Action
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3.7.1
+      - uses: "hewa1303/action-automatic-releases@latest"
         with:
-          github-token: ${{ secrets.CHANGELOG_RELEASE }}
-          output-file: "false"
-      - name: create release
-        uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.CHANGELOG_RELEASE }}
-        with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          release_name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
+          repo_token: "${{ secrets.CHANGELOG_RELEASE }}"
+          prerelease: false
